@@ -1,0 +1,21 @@
+diff -up xfig.3.2.5a/Imakefile.no-Xaw3d xfig.3.2.5a/Imakefile
+--- xfig.3.2.5a/Imakefile.no-Xaw3d	2009-03-27 16:33:46.000000000 +0100
++++ xfig.3.2.5a/Imakefile	2009-03-27 16:35:06.000000000 +0100
+@@ -50,7 +50,7 @@ XAPPLOADDIR = /usr/share/X11/app-default
+ XCOMM Comment out the following definition for XAW3D if you don't to want to use
+ XCOMM the 3d Athena Widget Set
+ 
+-XCOMM #define XAW3D
++#define XAW3D
+ 
+ #ifdef XAW3D
+ XAWLIB = -lXaw3d
+@@ -60,7 +60,7 @@ XCOMM Uncomment the following if you hav
+ XCOMM some new features, including "Tips", which replace xfig's "help balloons"
+ XCOMM NOTE: This is the default for many X systems now.
+ 
+-XCOMM #define XAW3D1_5E
++#define XAW3D1_5E
+ 
+ #ifdef XAW3D1_5E
+     DUSEXAW3D = -DXAW3D -DXAW3D1_5E

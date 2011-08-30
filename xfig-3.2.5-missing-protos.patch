@@ -1,0 +1,90 @@
+diff -urNad xfig~/e_chop.c xfig/e_chop.c
+--- xfig~/e_chop.c
++++ xfig/e_chop.c
+@@ -22,6 +22,7 @@
+ #ifndef __FreeBSD__
+ #include <alloca.h>
+ #endif
++#include <math.h>
+ #include "fig.h"
+ #include "resources.h"
+ #include "mode.h"
+@@ -31,6 +32,9 @@
+ #include "u_list.h"
+ #include "u_search.h"
+ #include "u_undo.h"
++#include "u_markers.h"
++#include "u_geom.h"
++#include "u_redraw.h"
+ #include "w_canvas.h"
+ #include "w_drawprim.h"
+ #include "w_mousefun.h"
+@@ -39,6 +43,8 @@
+ #include "w_zoom.h"
+ #include "w_snap.h"
+ #include "w_intersect.h"
++#include "w_cursor.h"
++#include "f_util.h"
+ 
+ static void select_axe_object();
+ static void select_log_object();
+diff -urNad xfig~/main.c xfig/main.c
+--- xfig~/main.c
++++ xfig/main.c
+@@ -68,6 +68,8 @@
+ #include <X11/keysym.h>
+ #endif  /* I18N */
+ 
++#include <X11/IntrinsicP.h>
++
+ /* EXPORTS */
+ 
+ Boolean	    geomspec;
+diff -urNad xfig~/w_intersect.c xfig/w_intersect.c
+--- xfig~/w_intersect.c
++++ xfig/w_intersect.c
+@@ -23,6 +23,8 @@
+ #include "mode.h"
+ #include "w_snap.h"
+ #include "w_intersect.h"
++#include "w_msgpanel.h"
++#include "f_util.h"
+ #include "u_quartic.h"
+ #include <alloca.h>
+ #include <math.h>
+diff -urNad xfig~/w_intersect.h xfig/w_intersect.h
+--- xfig~/w_intersect.h
++++ xfig/w_intersect.h
+@@ -59,4 +59,6 @@
+ 
+ extern F_line * build_text_bounding_box(F_text * t);
+ 
++extern void delete_text_bounding_box(F_line * l);
++
+ #endif
+diff -urNad xfig~/w_snap.c xfig/w_snap.c
+--- xfig~/w_snap.c
++++ xfig/w_snap.c
+@@ -27,7 +27,10 @@
+ #include "w_setup.h"
+ #include "w_indpanel.h"
+ #include "w_util.h"
++#include "w_msgpanel.h"
+ #include "u_quartic.h"
++#include "u_search.h"
++#include "f_util.h"
+ #include <math.h>
+ #ifndef __FreeBSD__
+ #include <alloca.h>
+diff -up xfig.3.2.5a/w_canvas.h~ xfig.3.2.5a/w_canvas.h
+--- xfig.3.2.5a/w_canvas.h~	2008-06-19 21:55:20.000000000 +0200
++++ xfig.3.2.5a/w_canvas.h	2009-03-27 16:42:25.000000000 +0100
+@@ -35,7 +35,7 @@ extern void	toggle_show_balloons(void);
+ extern void	toggle_show_lengths(void);
+ extern void	toggle_show_vertexnums(void);
+ extern void	toggle_show_borders(void);
+-extern void 	round_coords();				// isometric grid
++extern void 	round_coords(int *x, int *y);		// isometric grid
+ 
+ extern void		canvas_selected(Widget tool, XButtonEvent *event, String *params, Cardinal *nparams);
+ extern void	paste_primary_selection(void);

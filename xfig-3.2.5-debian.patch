@@ -1,0 +1,48 @@
+diff -urN xfig.3.2.5.orig/Doc/xfig.man xfig.3.2.5/Doc/xfig.man
+--- xfig.3.2.5.orig/Doc/xfig.man	2004-04-14 19:26:07.000000000 +0200
++++ xfig.3.2.5/Doc/xfig.man	2009-03-15 16:44:48.000000000 +0100
+@@ -1474,8 +1475,11 @@
+ See the
+ .IR Imakefile .
+ .TP
+-/usr/lib/X11/xfig
+-This directory contains the html documentation, the above mentioned
++/usr/share/doc/xfig-3.2.5
++This directory contains the documentation.
++.TP
++/usr/share/xfig
++This directory contains the above mentioned
+ CompKeyDB file, and a directory of libraries containing Fig objects
+ such as electrical symbols, logic symbols, etc.
+ .TP
+diff -urN xfig.3.2.5.orig/Doc/xfig_man.html xfig.3.2.5/Doc/xfig_man.html
+--- xfig.3.2.5.orig/Doc/xfig_man.html	2004-04-14 19:35:44.000000000 +0200
++++ xfig.3.2.5/Doc/xfig_man.html	2009-03-15 16:44:48.000000000 +0100
+@@ -2504,8 +2504,11 @@
+ See the
+ <I>Imakefile</I>.
+ 
+-<DT>/usr/lib/X11/xfig<DD>
+-This directory contains the html documentation, the above mentioned
++<DT>/usr/share/doc/xfig-3.2.5<DD>
++This directory contains the documentation.
++
++<DT>/usr/share/xfig<DD>
++This directory contains the above mentioned
+ CompKeyDB file, and a directory of libraries containing Fig objects
+ such as electrical symbols, logic symbols, etc.
+ <DT><B>Fig.ad and Fig-color.ad</B>
+diff -urN xfig.3.2.5.orig/Fig.ad xfig.3.2.5/Fig.ad
+--- xfig.3.2.5.orig/Fig.ad	2009-03-15 16:31:31.000000000 +0100
++++ xfig.3.2.5/Fig.ad	2009-03-15 16:44:48.000000000 +0100
+@@ -5,6 +5,10 @@
+ 
+ ! some sample settings you may want to change
+ 
++! If the following resource is set to false, xfig will use metric units
++! by default.
++Fig.inches:     true
++
+ ! The following fixes a problem that some window managers have
+ ! with xfig continually resizing itself
+ 

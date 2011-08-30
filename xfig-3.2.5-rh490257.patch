@@ -1,0 +1,60 @@
+diff -urNad xfig~/w_util.c xfig/w_util.c
+--- xfig~/w_util.c
++++ xfig/w_util.c
+@@ -932,21 +932,23 @@
+     DeclareArgs(4);
+     spin_struct *spins = (spin_struct*) info;
+     char	buf[200];
+-    int		val, i, pos;
++    int		val, i, modified = 0;
++    XawTextPosition pos;
+ 
+     /* save cursor position */
+     FirstArg(XtNinsertPosition, &pos);
+     GetValues(spins->widget);
+ 
+-    buf[sizeof(buf)-1]='\0';
+-    strncpy(buf,panel_get_value(spins->widget),sizeof(buf));
++    snprintf(buf, sizeof(buf), "%s", panel_get_value(spins->widget));
++
+     for (i=0; i<strlen(buf); )
+ 	/* delete any non-digits (including leading "-" when min >= 0 */
+ 	if ((spins->min >= 0.0 && buf[i] == '-') || ((buf[i] < '0' || buf[i] > '9') && buf[i] != '-') || 
+ 			(i != 0 && buf[i] == '-')) {
+-	    strcpy(&buf[i],&buf[i+1]);
++	    memmove(&buf[i], &buf[i+1], strlen(&buf[i]));
+ 	    /* adjust cursor for char we just removed */
+ 	    pos--;
++	    modified = 1;
+ 	} else {
+ 	    i++;
+ 	}
+@@ -954,15 +956,21 @@
+     if (strlen(buf) > 0 && !(strlen(buf)==1 && buf[0] == '-')) {
+ 	val = atoi(buf);
+ 	/* only check max.  If min is, say 3 and user wants to type 10, the 1 is too small */
+-	if (val > (int) spins->max)
++	if (val > (int) spins->max) {
+ 	    val = (int) spins->max;
+-	sprintf(buf,"%d", val);
++	    sprintf(buf,"%d", val);
++	    modified = 1;
++        }
+     }
+-    panel_set_value(spins->widget, buf);
+-    /* put cursor back */
+-    if (pos < strlen(buf)) {
+-	FirstArg(XtNinsertPosition, pos+1);
+-	SetValues(spins->widget);
++
++    if (modified) {
++        panel_set_value(spins->widget, buf);
++
++	/* put cursor back */
++	if (pos < strlen(buf)) {
++	    FirstArg(XtNinsertPosition, (pos+1));
++	    SetValues(spins->widget);
++	}
+     }
+ }
+ 

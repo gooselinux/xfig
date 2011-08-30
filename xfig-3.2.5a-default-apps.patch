@@ -1,0 +1,25 @@
+diff -up xfig.3.2.5a/Fig.ad~ xfig.3.2.5a/Fig.ad
+--- xfig.3.2.5a/Fig.ad~	2007-04-14 04:17:24.000000000 +0200
++++ xfig.3.2.5a/Fig.ad	2009-03-27 15:15:27.000000000 +0100
+@@ -23,18 +23,16 @@ Fig*AllowShellResize: false
+ 
+ ! Browser - put your favorite browser here.  
+ ! 		This is for viewing the xfig html reference.
+-! For firefox, this command will open the help pages in a running firefox,
+-!     or start a new netscape if one isn't already running
+-Fig.browser:	firefox -remote 'openFile(%f)' || firefox %f
++Fig.browser:			xdg-open %f
+ 
+ ! pdfviewer - put your favorite pdf viewer here.  
+ !		This is for viewing the xfig how-to guide and man pages
+-Fig.pdfviewer:			xpdf %f
++Fig.pdfviewer:			xdg-open %f
+ 
+ ! Spell check program - put your favorite spelling check program here.
+ !		It must write the misspelled words to standard output.
+ 
+-Fig.spellcheckcommand:	spell %f
++Fig.spellcheckcommand:		enchant -l %f
+ 
+ ! delay before spinner automatically counts when pressed (milliseconds)
+ Fig.spinner_delay:		1000

@@ -1,0 +1,12 @@
+diff -up xfig.3.2.5a/Imakefile.Xaw3d xfig.3.2.5a/Imakefile
+--- xfig.3.2.5a/Imakefile.Xaw3d	2009-03-27 16:32:20.000000000 +0100
++++ xfig.3.2.5a/Imakefile	2009-03-27 16:33:20.000000000 +0100
+@@ -50,7 +50,7 @@ XAPPLOADDIR = /usr/share/X11/app-default
+ XCOMM Comment out the following definition for XAW3D if you don't to want to use
+ XCOMM the 3d Athena Widget Set
+ 
+-#define XAW3D
++XCOMM #define XAW3D
+ 
+ #ifdef XAW3D
+ XAWLIB = -lXaw3d

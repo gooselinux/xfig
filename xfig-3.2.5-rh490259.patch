@@ -1,0 +1,12 @@
+diff -urN xfig.3.2.5.orig/w_msgpanel.c xfig.3.2.5/w_msgpanel.c
+--- xfig.3.2.5.orig/w_msgpanel.c	2005-07-26 18:40:01.000000000 +0200
++++ xfig.3.2.5/w_msgpanel.c	2009-03-19 14:21:11.000000000 +0100
+@@ -86,6 +86,8 @@
+     NextArg(XtNfromVert, cmd_form);
+     NextArg(XtNvertDistance, -INTERNAL_BW);
+     NextArg(XtNborderWidth, INTERNAL_BW);
++    NextArg(XtNtopMargin, 1);
++    NextArg(XtNbottomMargin, 1);
+     NextArg(XtNdisplayCaret, False);
+     NextArg(XtNtop, XtChainTop);
+     NextArg(XtNbottom, XtChainTop);

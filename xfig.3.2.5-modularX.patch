@@ -1,0 +1,29 @@
+diff -up xfig.3.2.5a/Imakefile~ xfig.3.2.5a/Imakefile
+--- xfig.3.2.5a/Imakefile~	2009-03-27 15:31:02.000000000 +0100
++++ xfig.3.2.5a/Imakefile	2009-03-27 15:35:44.000000000 +0100
+@@ -45,7 +45,7 @@ XCOMM Don't set the DESTDIR variable unl
+ XCOMM different tree than the "correct" tree that your X system expects. The usual
+ XCOMM purpose of DESTDIR is to test an install process by installing in a benign area.
+ 
+-XCOMM XAPPLOADDIR = /home/user/xfig
++XAPPLOADDIR = /usr/share/X11/app-defaults
+ 
+ XCOMM Comment out the following definition for XAW3D if you don't to want to use
+ XCOMM the 3d Athena Widget Set
+@@ -169,14 +169,14 @@ XCOMM be sure to comment out the second 
+ XCOMM XFIGLIBDIR = $(LIBDIR)
+ 
+ XCOMM use this if you want the multi-key data base file in the standard X11 tree
+-XFIGLIBDIR = $(LIBDIR)/xfig
++XFIGLIBDIR = /usr/share/xfig
+ 
+ XCOMM XFIGDOCDIR tells where the html and pdf documentation should go
+ XFIGDOCDIR = $(DOCDIR)/xfig
+ 
+ XCOMM MANDIR tells where the standard man pages should go (no need to change it
+ XCOMM if you want the man pages installed in the standard place on your system
+-MANDIR = $(MANSOURCEPATH)$(MANSUFFIX)
++MANDIR = /usr/share/man/man1
+ XCOMM MANDIR = /usr/local/xfig/man
+ 
+ XCOMM If your system doesn't have strstr undefine the following definition
